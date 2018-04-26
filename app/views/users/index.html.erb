@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome!</title>
+</head>
+<body>
+    <div class="wrapper" style="width:970px; margin: 0 auto; text-align:center;">
+        <h1>Welcome! Share your ideas!</h1>
+        <div class="register" style="border: 1px solid black; display: inline-block; padding:10px;">
+            <h2>Register</h2>
+            <form action="/users/create" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+               <p class="label" style="display: inline-block;"> First Name: <input type="text" name="user[name]"><p>
+               <p class="label" style="display: block;">Alias:<input type="text" name="user[alias]"></p>
+               <p class="label" style="display: block;">Email: <input type="text" name="user[email]"></p>
+              <p class="label" style="display: block;">Password:<input type="password" name="user[password]"></p>
+              <p>*password should be at least 8 characters</p>
+              <p class="label" style="display: block;">Confirm Password:<input type="password" name="user[confirm_password]"></p>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <div class="login" style="border: 1px solid black; display: inline-block; vertical-align:top; margin-left:25px; padding:10px;">
+            <h2>Login</h2>
+            <form action="users/login" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+            <p class="label" style="display: block;">Email: <input type="text" name="email"></p>
+            <p class="label" style="display: block;">Password: <input type="password" name="password"></p>
+            <input type="submit" value="Login"> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User</title>
+</head>
+<a href="/ideas">Dashboard!</a>
+<a href="/logout">Logout!</a>
+<body>
+    <ul>
+        <li>Name: <%=@user.name %></li>
+        <li>Alias: <%=@user.alias %></li>
+        <li>Email: <%=@user.email %></li>
+    </ul>
+    <div>
+        <p>Total number of posts: <%=@user.ideas.count%></p>
+        <p>Total number of likes: <%=@user.ideas_liked.count%> </p>
+    </div>
+</body>
+</html>

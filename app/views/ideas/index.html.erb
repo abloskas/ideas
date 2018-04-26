@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bright Ideas</title>
+</head>
+<body>
+   <h1>Hi <%=current_user.name%>!</h1> 
+   <a href="/logout">Logout!</a>
+   <%= form_for :idea, url: "/ideas/create" do |s| %>
+   <p>Idea: <%= s.text_field :idea %></p>
+   <%= submit_tag "Idea!" %>
+   <% end %>
+
+<br>
+<% @ideas.each do |x| %>
+  <a href="/users/<%=x.user.id%>"><%=x.user.name%></a> says:<p style="border: 2px solid black; width: auto; height:40px; display: inline-block; margin-left: 15px;"><%= x.idea %></p>
+  <br>
+  <p><a href="/ideas/<%=x.id%>"><%= x.likes.count %> people</a> like this</p>
+   <% if x.user == current_user %>
+   <div style="display: inline-block;">
+        <form action="/ideas/<%=x.id %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Idea">
+        </form>
+   </div>
+   <% end %>
+      <form action="/likes" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="idea_id" value="<%=x.id%>">
+          <input type="submit" value="Like">
+      </form>
+  
+   <%end%>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ideas | Show</title>
+</head>
+<body>
+        <a href="/ideas">Dashboard!</a>
+        <a href="/logout">Logout!</a>
+        <div>
+    <a href=""><%=@idea.user.name%></a> says:
+    <p style="border: 2px solid black; width: auto; height:40px; display: inline-block; margin-left: 15px;"><%= @idea.idea %></p>
+    </div>
+    <div>
+        <p>People who liked this post:</p>
+        <%@idea.users_liked.uniq.each do |people|%>
+        <ul>
+            <li>Alias: <a href="/users/<%=people.id%>"><%=people.alias%></a></li>
+            <li>Name: <%=people.name %></li>
+        </ul>
+        <%end%>
+    </div>
+
+</body>
+</html>
